@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { Button,message,Modal, Form,Input } from "antd";
-import { PlusOutlined,DeleteOutlined,EditOutlined,EyeOutlined} from "@ant-design/icons"
+import { PlusOutlined,DeleteOutlined,EditOutlined,EyeOutlined,LoadingOutlined} from "@ant-design/icons"
 
 export default function Admin() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -62,6 +62,13 @@ export default function Admin() {
     setIsModalOpen(false);
   };
 
+  const onLogout = async () => {
+    const {data} = await axios.post("/api/logout");
+    if(data.success) {
+      window.location.href = "/";
+    }
+  }
+
   const onFinish = async (values) => {
     if(updateId){
       const data = {
@@ -108,9 +115,16 @@ export default function Admin() {
     <>
     {contextHolder}
       <div className="w-[70%] border-1  mx-auto p-4">
-      <Button type="primary" onClick={()=>(setIsModalOpen(true),setUpdateId(null))} className="m-4" shape="round" icon={<PlusOutlined />}>
-        Create Post
-      </Button>
+        <div className="w-full flex justify-between items-center">
+          <Button type="primary" onClick={()=>(setIsModalOpen(true),setUpdateId(null))} className="m-4" shape="round" icon={<PlusOutlined />}>
+            Create Post
+          </Button>
+
+          <Button type="primary"  onClick={()=>onLogout()}>
+            Logout
+            </Button>
+
+        </div>
         {
           blog.map((items,index)=>(
             <>

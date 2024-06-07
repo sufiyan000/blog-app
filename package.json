@@ -12,12 +12,14 @@
     "antd": "^5.18.0",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
+    "jose": "^5.4.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.7.0",
     "mongoose": "^8.4.1",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "universal-cookie": "^7.1.4"
   },
   "devDependencies": {
     "eslint": "^8",

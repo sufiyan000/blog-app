@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';  
 import { Button, message, Form, Input } from 'antd';
-
+import Link from 'next/link';
 
 
 const Signups = ()=>{
@@ -31,7 +31,8 @@ const Signups = ()=>{
        <> 
        {contextHolder}
         <div className="w-[50%] mx-auto mt-16">
-            <h1 className="text-xl font-bold text-center mb-8">Sign Up</h1>
+        
+            <h1 className="text-xl font-bold text-center mb-8">Signup</h1>
         <Form
     name="basic"
     labelCol={{
@@ -85,11 +86,12 @@ const Signups = ()=>{
         span: 16,
       }}
     >
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
+        <Button type="primary" className="mr-4" htmlType="submit">
+          Submit
+        </Button>
+      <Link href={"/login"}>Login</Link>
+      </Form.Item>
+    </Form>
             </div>  
        </>
     )
