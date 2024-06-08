@@ -1,5 +1,6 @@
 "use client"
 import { useState,useEffect } from "react";
+import { useRouter } from 'next/navigation'
 import axios from "axios";
 import Link from "next/link";
 import { Button } from "antd";
@@ -8,6 +9,7 @@ import { Button } from "antd";
 import Header from "./header/page";
 
 export default function Home() {
+  const router = useRouter();
   const [ blog,setBlog ] = useState([]);
   const [pagination,setPagination] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,7 +17,7 @@ export default function Home() {
   const pages = Array.from({ length: pagination }, (_, index) => `Item ${index + 1}`);
   const handleClick = (event) => {
     setCurrentPage(Number(event.target.id));
-    alert(Number(event.target.id));
+    router.push(`/page/${Number(event.target.id)}`)
 };
   const renderPageNumbers = () => {
     const pageNumbers = [];
