@@ -1,4 +1,5 @@
 "use client"
+
 import { useState,useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
@@ -118,18 +119,18 @@ export default function Admin() {
         <div className="w-full flex justify-between items-center">
           <Button type="primary" onClick={()=>(setIsModalOpen(true),setUpdateId(null))} className="m-4" shape="round" icon={<PlusOutlined />}>
             Create Post
-          </Button>
+            </Button>
 
           <Button type="primary"  onClick={()=>onLogout()}>
             Logout
             </Button>
 
-        </div>
+          </div>
         {
           blog.map((items,index)=>(
             <>
               
-                <div className="border border-2 p-4 m-4 hover:bg-[#DAF7A6] cursor-pointer">
+                <div key={index} className="border border-2 p-4 m-4 hover:bg-[#DAF7A6] cursor-pointer">
                 <h1>{items.title}</h1>
                 <hr />
                 <p>{items.content}</p>
@@ -152,82 +153,74 @@ export default function Admin() {
           
         }
         <Modal title="Edit Post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
-    style={{
-      maxWidth: 600,
-    }}
-    initialValues={{
-      title : formData.title,
-      content : formData.content,
-      author : formData.author  
-    }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <Form.Item
-      label="Title"
-      name="title"
-      value= {formData.title}
-      rules={[
-        {
-          required: true,
-          message: 'Please input title!',
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
+          <Form
+              name="basic"
+              labelCol={{
+                span: 8,
+              }}
+              wrapperCol={{
+                span: 16,
+              }}
+              style={{
+                maxWidth: 600,
+              }}
+              initialValues={{
+                title : formData.title,
+                content : formData.content,
+                author : formData.author  
+              }}
+              onFinish={onFinish}
+              onFinishFailed={onFinishFailed}
+              autoComplete="off"
+            >
+              <Form.Item
+                label="Title"
+                name="title"
+                value= {formData.title}
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input title!',
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
 
-    <Form.Item
-      label="Content"
-      name="content"
-      rules={[
-        {
-          required: true,
-          message: 'Please input Content!',
-        },
-      ]}
-    >
-      <Input.TextArea />
-    </Form.Item>
+              <Form.Item
+                label="Content"
+                name="content"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Please input Content!',
+                  },
+                ]}
+              >
+                <Input.TextArea />
+              </Form.Item>
 
-    <Form.Item
-      label="Author"
-      name="author"
-      
-    >
-      <Input />
-    </Form.Item>
+              <Form.Item
+                label="Author"
+                name="author"
+                
+              >
+                <Input />
+              </Form.Item>
 
-    <Form.Item
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Button type="primary" htmlType="submit">
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
+              <Form.Item
+                wrapperCol={{
+                  offset: 8,
+                  span: 16,
+                }}
+              >
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+          </Form>
         </Modal>
-        {
-            pages.map((page, index) =>(
-              <>
-                <button className="w-[70px] h-[40px] border border-2">
-                  page
-                </button>
-              </>
-            ))
-        }
+        
         
         
       </div>

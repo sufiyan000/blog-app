@@ -20,11 +20,13 @@ const PostDetails = ({ params })=>{
                 {
                     post ? post.map((items,index)=>(
                         <>  
-                            <h1>{items._id}</h1>
-                            <h1 className="text-3xl">{items.title}</h1>
-                            <h3 className="font-">{items.content}</h3>
-                            <p>{items.author}</p>
-                            <p>{items.createdAt}</p>
+                            <div key={index}>
+                                <h1>{items._id}</h1>
+                                <h1 className="text-3xl">{items.title}</h1>
+                                <h3 className="font-">{items.content}</h3>
+                                <p>{items.author}</p>
+                                <p>{items.createdAt}</p>
+                            </div>
                         </>
                     )): <LoadingOutlined />
                 }

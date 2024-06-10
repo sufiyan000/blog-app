@@ -20,7 +20,6 @@ export async function middleware(req, res, next) {
     console.error(err);
     // return NextResponse.json({success : false, message: 'Invalid token', error: error.message }, { status: 401 });
   }
-  console.log(JSON.stringify(payload));
   
     // return NextResponse.redirect("http://localhost:3000/login");
 }
