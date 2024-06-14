@@ -1,33 +1,34 @@
+"use client"
+import React, { useState, useEffect } from 'react';
+import { fetchBlog } from '@/app/lib/fetcher';
 
-import {fetchBlog} from "@/app/lib/fetcher"
-export default async function Page() {
-  const blog = await fetchBlog();
-  console.log(blog);
- 
+export default function Page() {
+  const [blog, setBlog] = useState([]);
+
+  useEffect(() => {
+    const fetchBlogData = async () => {
+      try {
+        const blogData = await fetchBlog();
+        setBlog(blogData);
+      } catch (error) {
+        console.error('Error fetching blog data:', error);
+      }
+    };
+
+    fetchBlogData();
+  }, []);
+
   return (
     <main>
-      {
-        console.log(blog)
-      }
-      
-       {
-        
-          blog.map((items,index)=>(
-            <>
-              
-                <div  className="border border-2 p-4 m-4 hover:bg-[#DAF7A6] cursor-pointer">
-                  <h1>{items.title}</h1>
-                  <hr />
-                  <p>{items.content}</p>
-                  <hr />
-                  <p>{items.author}</p>
-                </div>
-              
-            </>
-          ))
-          
-          
-        }
+      {blog.map((item, index) => (
+        <div key={index} className="border border-2 p-4 m-4 hover:bg-[#DAF7A6] cursor-pointer">
+          <h1>{item.title}</h1>
+          <hr />
+          <p>{item.content}</p>
+          <hr />
+          <p>{item.author}</p>
+        </div>
+      ))}
     </main>
-  )
+  );
 }
